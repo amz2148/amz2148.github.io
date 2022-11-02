@@ -1,9 +1,10 @@
 ---
 title: "Resume"
 ---
+#
+#
+#
+```{r label, out.width = "850px", out.height = "1100px", echo=FALSE, fig.align = "center"}
+knitr::include_graphics("images/Resume_Anna Zavodszky.pdf")
+```
 
-
-<img src="images/Resume_Anna Zavodszky_Page_1.jpg" style="width:100%">
-
-
-<img src="images/Resume_Anna Zavodszky_Page_2.jpg" style="width:100%">

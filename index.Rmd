@@ -5,10 +5,13 @@ title: "Anna M. Zavodszky"
 #
 #
 #
-## About Anna:
-###
-###
+### About Anna:
+#
+#
 Anna Zavodszky is a second year MPH student at Columbia studying epidemiology with a global health focus. She has 2 years of work experience in health policy and several years of both qualitative and quantitative research experience spanning from her undergraduate years to now. Anna is passionate about advancing the health of women and children in LMICs – particularly through HIV and reproductive/maternal health focused work. In fact, she recently completed a three-month internship in Mozambique with the non-profit ICAP, improving and implementing a longitudinal data tool used to track HIV+ mother and infant pairs.
-#
-#
-#
+ 
+ 
+ 
+
+ 
+<img src="images/Anna Zavodszky_TA Headshot.jpg" style="width:60%">

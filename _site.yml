@@ -1,9 +1,9 @@
-name: "Yay internet!"
+name: "Anna M. Zavodszky"
 output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "About"
+    - text: "Resume"
       href: about.html
     - icon: fa-envelope fa-lg
       href: mailto:<amz2148@cumc.columbia.edu>

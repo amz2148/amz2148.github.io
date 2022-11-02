@@ -1,9 +1,9 @@
 ---
-title: "About"
+title: "Resume"
 ---
 
 ### About this site
 
-Sometimes you need to say a bit about the site -- how it was made, where it's hosted, where the source code can be found. 
+<img src="images/Resume_Anna Zavodszky_Page_1.jpg" style="width:100%">
 
-If this is for a project or analysis, I recommend giving some details about the R package versions that you used to create the content.
+<img src="images/Resume_Anna Zavodszky_Page_2.jpg" style="width:100%">

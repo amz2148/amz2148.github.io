@@ -1,18 +1,19 @@
 ---
-title: "Flexdashboard"
+title: "Flexdashboard - NY NOAA Data"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
 
-```{r setup}
-knitr::opts_chunk$set(echo = FALSE) #shows no code chunks
-```
-
-```{r load_libraries}
+```{r setup, include=FALSE}
 library(tidyverse) #loads tidyverse package
 library(p8105.datasets) #loads p8105.datasets package
 library(plotly) #loads plotly package
+library(flexdashboard) #loads flexdashboard package
 ```
 
-```{r load_dataset}
+```{r load_dataset, include=FALSE}
 data("ny_noaa", package = "p8105.datasets") #loads ny_noaa dataset
 
 ny_noaa = 
@@ -31,6 +32,12 @@ ny_noaa =
   mutate(prcp_mm = prcp / 10, tmax_c = tmax / 10, tmin_c = tmin / 10) #convers prcp from tenths of mm to mm and converts temperatures from tenths of degrees c to degrees c
 ```
 
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
 ```{r scatterplot}
 ny_noaa %>%
   mutate(text_label = str_c("Month: ", month, "\nYear: ", year, "\nStation ID: ", id)) %>% 
@@ -39,11 +46,18 @@ ny_noaa %>%
     color = ~month, text = ~text_label, alpha = 0.5)
 ```
 
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
 ```{r boxplot}
 ny_noaa %>% 
   mutate(year = as.factor(year)) %>% 
   plot_ly(y = ~tmax_c, color = ~year, type = "box", colors = "viridis")
 ```
+
+### Chart C
 
 ```{r barchart}
 ny_noaa %>% 

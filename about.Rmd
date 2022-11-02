@@ -2,7 +2,6 @@
 title: "Resume"
 ---
 
-### About this site
 
 <img src="images/Resume_Anna Zavodszky_Page_1.jpg" style="width:100%">
 

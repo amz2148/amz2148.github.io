@@ -1,8 +1,11 @@
 ---
 title: "Anna M. Zavodszky"
 ---
-
 #
+#
+
+<img src="images/Anna Zavodszky_TA Headshot.jpg" style="width:60%">
+
 #
 #
 ### About Anna:
@@ -12,4 +15,3 @@ Anna Zavodszky is a second year MPH student at Columbia studying epidemiology wi
  
  
  
-<img src="images/Anna Zavodszky_TA Headshot.jpg" style="width:60%">

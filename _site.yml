@@ -3,8 +3,10 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "Resume"
+    - text: "Educational and Professional Experience"
       href: about.html
+    - text: "Flexdashboard"
+      href: flexdashboard.html
     - icon: fa-envelope fa-lg
       href: mailto:<amz2148@cumc.columbia.edu>
     - icon: fa-brands fa-linkedin

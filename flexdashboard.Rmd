@@ -1,0 +1,54 @@
+---
+title: "Flexdashboard"
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = FALSE) #shows no code chunks
+```
+
+```{r load_libraries}
+library(tidyverse) #loads tidyverse package
+library(p8105.datasets) #loads p8105.datasets package
+library(plotly) #loads plotly package
+```
+
+```{r load_dataset}
+data("ny_noaa", package = "p8105.datasets") #loads ny_noaa dataset
+
+ny_noaa = 
+  ny_noaa %>% 
+  filter(date > "1999-12-31") %>% 
+  sample_n(3000)
+
+ny_noaa = 
+  ny_noaa %>% 
+    janitor::clean_names() %>% #cleans variable names
+  separate(date, into = c("year", "month", "day"), sep = '-') %>% #separates date variable into year, month, day variables
+  mutate(id = as.factor(id), month = as.numeric(month), year = as.numeric(year), day = as.numeric(day), prcp = as.numeric(prcp), snow = as.numeric(snow), snwd = as.numeric(snow), tmax = as.numeric(tmax), tmin = as.numeric(tmin)) %>% #converts variables to proper classes
+  mutate(month = month.abb[month]) %>% #replaces month number with name
+  mutate(month = factor(month, levels = month.abb)) %>% #converts month name to factor variable
+  arrange(id, year, month, day) %>% #arranges data by id, year, month, and day
+  mutate(prcp_mm = prcp / 10, tmax_c = tmax / 10, tmin_c = tmin / 10) #convers prcp from tenths of mm to mm and converts temperatures from tenths of degrees c to degrees c
+```
+
+```{r scatterplot}
+ny_noaa %>%
+  mutate(text_label = str_c("Month: ", month, "\nYear: ", year, "\nStation ID: ", id)) %>% 
+  plot_ly(
+    x = ~tmin_c, y = ~snow, type = "scatter", mode = "markers",
+    color = ~month, text = ~text_label, alpha = 0.5)
+```
+
+```{r boxplot}
+ny_noaa %>% 
+  mutate(year = as.factor(year)) %>% 
+  plot_ly(y = ~tmax_c, color = ~year, type = "box", colors = "viridis")
+```
+
+```{r barchart}
+ny_noaa %>% 
+  filter(prcp > 0) %>% 
+  group_by(month) %>% 
+  summarize(prcp_avg = mean(prcp)) %>% 
+  plot_ly(x = ~month, y = ~prcp_avg, color = ~month, type = "bar", colors = "viridis")
+```

@@ -35,7 +35,7 @@ ny_noaa =
 Row
 -----------------------------------------------------------------------
 
-### Chart A
+### Chart 1
 
 ```{r scatter_plot}
 ny_noaa %>%
@@ -50,7 +50,7 @@ ny_noaa %>%
 Row {.tabset .tabset-fade}
 -----------------------------------------------------------------------
 
-### Chart B
+### Chart 2
 
 ```{r box_plot}
 ny_noaa %>% 
@@ -60,7 +60,7 @@ ny_noaa %>%
     title = '<b> Maximum Temperature by Year, 2000-2010 <b>', xaxis = list(title = 'Year'), yaxis = list(title = 'Maximum Temperature (C)'), legend = list(title = list(text = 'Year')))
 ```
 
-### Chart C
+### Chart 3
 
 ```{r bar_chart}
 ny_noaa %>% 

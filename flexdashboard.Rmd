@@ -2,7 +2,8 @@
 title: "Flexdashboard - NY NOAA Dataset (simple random sample of 3000 observations from 2000-2010)"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: rows
+    orientation: columns
+    vertical_layout: fill
 ---
 
 ```{r setup, include=FALSE}
@@ -32,10 +33,10 @@ ny_noaa =
 ```
 
 
-Row
+Column {data-width=500}
 -----------------------------------------------------------------------
 
-### Chart 1
+### Snowfall by Minimum Temperature, 2000-2010
 
 ```{r scatter_plot}
 ny_noaa %>%
@@ -43,24 +44,22 @@ ny_noaa %>%
   plot_ly(
     x = ~tmin_c, y = ~snow, type = "scatter", mode = "markers",
     color = ~month, text = ~text_label, alpha = 0.5) %>% 
-  layout(
-    title = '<b> Snowfall by Minimum Temperature, 2000-2010 <b>', xaxis = list(title = 'Minimum Temperature (C)'), yaxis = list(title = 'Snowfall (mm)'), legend = list(title = list(text = 'Month')))
+  layout(xaxis = list(title = 'Minimum Temperature (C)'), yaxis = list(title = 'Snowfall (mm)'), legend = list(title = list(text = 'Month')))
 ```
 
-Row {.tabset .tabset-fade}
+Column {data-width=500}
 -----------------------------------------------------------------------
 
-### Chart 2
+### Maximum Temperature by Year, 2000-2010
 
 ```{r box_plot}
 ny_noaa %>% 
   mutate(year = as.factor(year)) %>% 
   plot_ly(y = ~tmax_c, color = ~year, type = "box", colors = "viridis") %>% 
-  layout(
-    title = '<b> Maximum Temperature by Year, 2000-2010 <b>', xaxis = list(title = 'Year'), yaxis = list(title = 'Maximum Temperature (C)'), legend = list(title = list(text = 'Year')))
+  layout(xaxis = list(title = 'Year'), yaxis = list(title = 'Maximum Temperature (C)'), legend = list(title = list(text = 'Year')))
 ```
 
-### Chart 3
+### Average Preciptation by Month, 2000-2010
 
 ```{r bar_chart}
 ny_noaa %>% 
@@ -68,6 +67,5 @@ ny_noaa %>%
   group_by(month) %>% 
   summarize(prcp_avg = mean(prcp)) %>% 
   plot_ly(x = ~month, y = ~prcp_avg, color = ~month, type = "bar", colors = "viridis") %>% 
-  layout(
-    title = '<b> Average Preciptation by Month, 2000-2010 <b>', xaxis = list(title = 'Month'), yaxis = list(title = 'Average Precipitation (mm)'), legend = list(title = list(text = 'Month')))
+  layout(xaxis = list(title = 'Month'), yaxis = list(title = 'Average Precipitation (mm)'), legend = list(title = list(text = 'Month')))
 ```

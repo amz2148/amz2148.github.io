@@ -18,8 +18,8 @@ data("ny_noaa", package = "p8105.datasets") #loads ny_noaa dataset
 
 ny_noaa = 
   ny_noaa %>% 
-  filter(date > "1999-12-31") %>% 
-  sample_n(3000)
+  filter(date > "1999-12-31") %>%  #keeps only data after Dec 31, 1999 
+  sample_n(3000) #takes random sample of 3000 observations
 
 ny_noaa = 
   ny_noaa %>% 
@@ -40,11 +40,11 @@ Column {data-width=500}
 
 ```{r scatter_plot}
 ny_noaa %>%
-  mutate(text_label = str_c("Month: ", month, "Day: ", day, "\nYear: ", year, "\nStation ID: ", id)) %>% 
+  mutate(text_label = str_c("Month: ", month, "Day: ", day, "\nYear: ", year, "\nStation ID: ", id)) %>% #creates label for hovering over text
   plot_ly(
     x = ~tmin_c, y = ~snow, type = "scatter", mode = "markers",
-    color = ~month, text = ~text_label, alpha = 0.5) %>% 
-  layout(xaxis = list(title = 'Minimum Temperature (C)'), yaxis = list(title = 'Snowfall (mm)'), legend = list(title = list(text = 'Month')))
+    color = ~month, text = ~text_label, alpha = 0.5) %>% #creates scatterplot
+  layout(xaxis = list(title = 'Minimum Temperature (C)'), yaxis = list(title = 'Snowfall (mm)'), legend = list(title = list(text = 'Month'))) #adds labels
 ```
 
 Column {data-width=500}
@@ -54,18 +54,17 @@ Column {data-width=500}
 
 ```{r box_plot}
 ny_noaa %>% 
-  mutate(year = as.factor(year)) %>% 
-  plot_ly(y = ~tmax_c, color = ~year, type = "box", colors = "viridis") %>% 
-  layout(xaxis = list(title = 'Year'), yaxis = list(title = 'Maximum Temperature (C)'), legend = list(title = list(text = 'Year')))
+  mutate(year = as.factor(year)) %>% #creates label for hovering over text
+  plot_ly(y = ~tmax_c, color = ~year, type = "box", colors = "viridis") %>% #creates boxplot
+  layout(xaxis = list(title = 'Year'), yaxis = list(title = 'Maximum Temperature (C)'), legend = list(title = list(text = 'Year'))) #adds labels
 ```
 
 ### Average Preciptation by Month, 2000-2010
 
 ```{r bar_chart}
 ny_noaa %>% 
-  filter(prcp > 0) %>% 
-  group_by(month) %>% 
-  summarize(prcp_avg = mean(prcp)) %>% 
-  plot_ly(x = ~month, y = ~prcp_avg, color = ~month, type = "bar", colors = "viridis") %>% 
-  layout(xaxis = list(title = 'Month'), yaxis = list(title = 'Average Precipitation (mm)'), legend = list(title = list(text = 'Month')))
+  group_by(month) %>% #groups data by month
+  summarize(prcp_avg = mean(prcp_mm, na.rm = TRUE)) %>% #calculates mean precipitation value for each month, excluding NA values
+  plot_ly(x = ~month, y = ~prcp_avg, color = ~month, type = "bar", colors = "viridis") %>% #creates barchart
+  layout(xaxis = list(title = 'Month'), yaxis = list(title = 'Average Precipitation (mm)'), legend = list(title = list(text = 'Month'))) #adds labels
 ```
